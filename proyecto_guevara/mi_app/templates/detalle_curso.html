@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles del Curso: {{ curso.nombre }}{% endblock %}
+
+{% block content %}
+    <h2>{{ curso.nombre }}</h2>
+    <p>{{ curso.descripcion }}</p>
+    <h3>Cátedras</h3>
+    <ul>
+        {% for catedra in curso.catedra_set.all %}
+            <li>{{ catedra.nombre }} - Profesor: {{ catedra.profesor }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

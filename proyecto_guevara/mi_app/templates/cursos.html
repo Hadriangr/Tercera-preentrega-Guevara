@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Cursos{% endblock %}
+
+{% block content %}
+    <h2>Lista de Cursos</h2>
+    <ul>
+        {% for curso in cursos %}
+            <li>{{ curso.nombre }} - {{ curso.descripcion }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
