@@ -1,10 +1,10 @@
 # En mi_app/views.py
 from .models import Curso, Alumno
 from django.shortcuts import render, redirect
-from .forms import CursoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm
+from .forms import CrearCursoForm,CursoForm
+
 
 
 
@@ -27,22 +27,22 @@ def lista_alumnos(request):
 
 
 def mis_cursos(request):
-    cursos = request.user.curso_set.all()  
+    cursos = Curso.objects.all()
     return render(request, 'mis_cursos.html', {'cursos': cursos})
 
 
 
-def agregar_curso(request):
+
+def crear_curso(request):
     if request.method == 'POST':
         form = CursoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('lista_cursos')  
+            return redirect('mis_cursos')
     else:
         form = CursoForm()
 
-    return render(request, 'agregar_curso.html', {'form': form})
-
+    return render(request, 'crear_curso.html', {'form': form})
 
 
 def signup(request):

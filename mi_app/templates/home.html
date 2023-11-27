@@ -1,23 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Página de Inicio{% endblock %}
+{% block title %}Lista de Cursos{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2>Bienvenido a mi Sitio</h2>
-        <p>¡Explora nuestros cursos y disfruta de tu experiencia de aprendizaje!</p>
-        
-        <!-- Aquí puedes agregar más contenido según tus necesidades -->
-
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Últimos Cursos</h3>
-                <!-- Muestra una lista de los últimos cursos o algo similar -->
-            </div>
-            <div class="col-md-6">
-                <h3>Noticias y Actualizaciones</h3>
-                <!-- Muestra noticias o actualizaciones relevantes -->
-            </div>
-        </div>
-    </div>
+    <h2>Lista de Cursos</h2>
+    <ul>
+        {% for curso in cursos %}
+            <li>{{ curso.nombre }} - {{ curso.descripcion }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
