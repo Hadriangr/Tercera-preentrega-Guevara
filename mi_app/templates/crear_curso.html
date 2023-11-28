@@ -4,4 +4,6 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Crear Curso</button>
+<a href="{% url 'buscar_curso' %}">Buscar Curso</a>
+
 </form>

@@ -39,9 +39,13 @@ class CrearCursoForm(forms.Form):
     nombre = forms.CharField(label='Nombre del Curso', max_length=100)
     descripcion = forms.CharField(label='Descripción', widget=forms.Textarea)
     precio = forms.DecimalField(label='Precio', min_value=0)
-    # Otros campos según tus necesidades
+
 
 class CursoForm(forms.ModelForm):
     class Meta:
         model = Curso
         fields = ['nombre', 'descripcion']
+   
+        
+class BuscarCursoForm(forms.Form):
+    nombre_curso = forms.CharField(max_length=255, required=False)

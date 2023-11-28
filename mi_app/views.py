@@ -3,7 +3,7 @@ from .models import Curso, Alumno
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CrearCursoForm,CursoForm
+from .forms import CrearCursoForm,CursoForm, BuscarCursoForm
 
 
 
@@ -59,3 +59,26 @@ def signup(request):
 
 def home(request):
     return render(request, 'home.html')
+
+
+
+
+"""def buscar_curso(request):
+    form = BuscarCursoForm()
+
+    if request.method == 'GET':
+        return render(request, 'buscar_curso.html', {'form': form})
+   """ 
+    
+def buscar_curso(request):
+    form = BuscarCursoForm(request.GET or None)
+    cursos_encontrados = None
+
+    if request.method == 'GET' and form.is_valid():
+        # Realiza la consulta a la base de datos
+        cursos_encontrados = Curso.objects.filter(nombre__icontains=form.cleaned_data['nombre_curso'])
+
+
+    print(cursos_encontrados)  # Agrega esta línea para depurar
+
+    return render(request, 'buscar_curso_resultados.html', {'form': form, 'cursos_encontrados': cursos_encontrados})
