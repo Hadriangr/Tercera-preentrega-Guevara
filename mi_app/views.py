@@ -84,8 +84,9 @@ def buscar_curso(request):
     form = BuscarCursoForm(request.GET or None)
     cursos_encontrados = []
 
-    if request.method == 'GET' and form.is_valid():
-        nombre_curso = form.cleaned_data['nombre_curso']
-        cursos_encontrados = Curso.objects.filter(nombre__icontains=nombre_curso)
+    if request.method == 'GET':
+        if form.is_valid():
+            nombre_curso = form.cleaned_data['nombre_curso']
+            cursos_encontrados = Curso.objects.filter(nombre__icontains=nombre_curso)
 
     return render(request, 'buscar_curso_resultados.html', {'form': form, 'cursos_encontrados': cursos_encontrados})

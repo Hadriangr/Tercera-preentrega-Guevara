@@ -16,15 +16,18 @@
         <button type="submit">Buscar</button>
     </form>
 
-    {% if cursos_encontrados %}
-        <h2>Resultados:</h2>
-        <ul>
-            {% for curso in cursos_encontrados %}
-                <li>{{ curso.nombre }}</li>
-                <li>{{ curso.descripcion }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No se encontraron cursos.</p>
+    {% if form.is_valid %}
+        {% if cursos_encontrados %}
+            <h2>Resultados:</h2>
+            <ul>
+                {% for curso in cursos_encontrados %}
+                    <li>{{ curso.nombre }}</li>
+                    <li>{{ curso.descripcion }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron cursos.</p>
+        {% endif %}
     {% endif %}
 {% endblock %}
+
