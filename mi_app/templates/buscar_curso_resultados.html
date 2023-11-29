@@ -1,5 +1,30 @@
-{% for curso in cursos_encontrados %}
-    <p>{{ curso.nombre }} - {{ curso.descripcion }}</p>
-{% empty %}
-    <p>No se encontraron cursos.</p>
-{% endfor %}
+{% extends 'base.html' %}
+
+{% block title %}Resultados de la Búsqueda{% endblock %}
+
+{% block header %}
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Resultados de la Búsqueda</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form method="get" action="{% url 'buscar_curso' %}">
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if cursos_encontrados %}
+        <h2>Resultados:</h2>
+        <ul>
+            {% for curso in cursos_encontrados %}
+                <li>{{ curso.nombre }}</li>
+                <li>{{ curso.descripcion }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron cursos.</p>
+    {% endif %}
+{% endblock %}

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="Pagina de Cursos" />
         <meta name="author" content="N. Hadrian Guevara R." />
-        <title>Cursos</title>
+        <title>{% block title %}Cursos{% endblock %}</title>
         <script src="{% static 'mi_app/static/js/scripts.js' %}"></script>
         <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
 
@@ -46,6 +46,7 @@
             </div>
         </nav>
         <!-- Header-->
+        {% block header %}
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
@@ -54,9 +55,10 @@
                 </div>
             </div>
         </header>
-        {% block content %}|
-        <!-- Section-->
+        {% endblock %}|
+
         <section class="py-5">
+            {% block content %}{% endblock %}
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">
@@ -182,7 +184,6 @@
             </div>
                            
         </section>
-        {% endblock %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
